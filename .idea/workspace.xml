@@ -20,24 +20,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lost.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="lost.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lost.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="216" column="55" selection-start="6811" selection-end="6811" vertical-scroll-proportion="-6.269231">
+            <state line="464" column="23" selection-start="17978" selection-end="17978" vertical-scroll-proportion="0.52606636">
               <folding>
-                <marker date="1359449724000" expanded="true" signature="19400:19587" placeholder="..." />
-                <marker date="1359449724000" expanded="true" signature="19425:19442" placeholder="..." />
-                <marker date="1359449724000" expanded="true" signature="19623:19645" placeholder="..." />
-                <marker date="1359449724000" expanded="true" signature="19670:19692" placeholder="..." />
+                <marker date="1359452188000" expanded="true" signature="19442:19629" placeholder="..." />
+                <marker date="1359452188000" expanded="true" signature="19467:19484" placeholder="..." />
+                <marker date="1359452188000" expanded="true" signature="19665:19687" placeholder="..." />
+                <marker date="1359452188000" expanded="true" signature="19712:19734" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="13" selection-start="919" selection-end="919" vertical-scroll-proportion="0.7171561">
+            <state line="33" column="9" selection-start="940" selection-end="940" vertical-scroll-proportion="-19.2">
               <folding />
             </state>
           </provider>
@@ -64,8 +64,8 @@
       <list>
         <option value="$PROJECT_DIR$/lost1.js" />
         <option value="$PROJECT_DIR$/data.php" />
-        <option value="$PROJECT_DIR$/lost.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/lost.js" />
       </list>
     </option>
   </component>
@@ -246,10 +246,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="233" column="0" selection-start="8031" selection-end="8031" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1359449724000" expanded="true" signature="19400:19587" placeholder="..." />
-            <marker date="1359449724000" expanded="true" signature="19425:19442" placeholder="..." />
-            <marker date="1359449724000" expanded="true" signature="19623:19645" placeholder="..." />
-            <marker date="1359449724000" expanded="true" signature="19670:19692" placeholder="..." />
+            <marker date="1359452188000" expanded="true" signature="19442:19629" placeholder="..." />
+            <marker date="1359452188000" expanded="true" signature="19467:19484" placeholder="..." />
+            <marker date="1359452188000" expanded="true" signature="19665:19687" placeholder="..." />
+            <marker date="1359452188000" expanded="true" signature="19712:19734" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -275,22 +275,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lost.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="216" column="55" selection-start="6811" selection-end="6811" vertical-scroll-proportion="-6.269231">
-          <folding>
-            <marker date="1359449724000" expanded="true" signature="19400:19587" placeholder="..." />
-            <marker date="1359449724000" expanded="true" signature="19425:19442" placeholder="..." />
-            <marker date="1359449724000" expanded="true" signature="19623:19645" placeholder="..." />
-            <marker date="1359449724000" expanded="true" signature="19670:19692" placeholder="..." />
-          </folding>
+        <state line="33" column="9" selection-start="940" selection-end="940" vertical-scroll-proportion="-19.2">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/lost.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="919" selection-end="919" vertical-scroll-proportion="0.7171561">
-          <folding />
+        <state line="464" column="23" selection-start="17978" selection-end="17978" vertical-scroll-proportion="0.52606636">
+          <folding>
+            <marker date="1359452188000" expanded="true" signature="19442:19629" placeholder="..." />
+            <marker date="1359452188000" expanded="true" signature="19467:19484" placeholder="..." />
+            <marker date="1359452188000" expanded="true" signature="19665:19687" placeholder="..." />
+            <marker date="1359452188000" expanded="true" signature="19712:19734" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -220,7 +220,7 @@
         }
         ,
         _waterfall_resize:function(){
-                this._waterfall_options.currentlastindex = 0;
+                this._waterfall_options.currentlastindex = 0;//要重排所有已经存在的元素 所以 最后load的索引清零 从数组下标0开始加载元素
                 var oldColumn = this._waterfall_options.column;
                 this._waterfall_options.column = Math.floor(($(window).width()- this._waterfall_options.contain_left-100)/ this._waterfall_options.width);
                 if(oldColumn != this._waterfall_options.column && this._waterfall_options.column >= this._waterfall_options.resizelimit){//如果列发生变化 则重新排列
