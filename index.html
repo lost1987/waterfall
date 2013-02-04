@@ -10,23 +10,22 @@ $(function(){
 	//$(".images").image_uniform_scale();
 	$("#images").waterfall(
             {
-                width:200,
-                space:30,
-                borderStyle:{'border':'10px white solid'},
-                resizelimit:3,//resize时最小列数
-                divheight:40,
+                width:175,
+                space:25,
+                borderStyle:{border:'5px white solid'},
                 loadParam:{
-                            element:'#images',
-                            url:'data.php',
-                            type:'POST',
-                            dataType:'html',
-                            data:'op=next',
-                            limit:20,
-                            waterfall:true
+                    element:'#images',
+                    url:'data.php',
+                    type:'POST',
+                    dataType:'html',
+                    data:'op=next',
+                    waterfall:true,
+                    start:0,
+                    limit:20
                 },
-                clickEvent:function(){
-                    alert('fuck your ass!');
-                }
+                resizelimit:3,
+                divheight:35,
+                clickEvent:null
             }
     );
 

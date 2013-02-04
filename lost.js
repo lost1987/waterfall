@@ -164,9 +164,9 @@
              width:图片的宽度
              space:每行元素之间的间隔
              borderStyle:边框样式  json格式
-             loadParam 请惨遭lazyload方法参数
+             loadParam 请求lazyload方法参数
              resizelimit 最小列数
-             divheight 结构里的p标签的高度需要给定
+             divheight 结构里图片下方的div标签的高度需要给定
              clickEvent 想实现单个图片的click事件
 
              <span><img src="images/1.jpg" /><div>this is a test</div></span>
@@ -202,6 +202,7 @@
                 clearTimeout($._waterfall_options.isResize);
                 $._waterfall_options.isResize = setTimeout("$._waterfall_resize("+")",100);
             });
+
         }
     });
 
@@ -211,58 +212,58 @@
         _waterfall_options : {},
 
         _waterfall_event_bind:function(type,nodes){
-                    switch(type){
-                        case 'click' :
-                                        if(typeof eval($._waterfall_options.clickEvent) != 'function')return;
-                                        $(nodes).click($._waterfall_options.clickEvent);
-                         break;
-                    }
+            switch(type){
+                case 'click' :
+                    if(typeof eval($._waterfall_options.clickEvent) != 'function')return;
+                    $(nodes).click($._waterfall_options.clickEvent);
+                    break;
+            }
         }
         ,
         _waterfall_resize:function(){
-                this._waterfall_options.currentlastindex = 0;//要重排所有已经存在的元素 所以 最后load的索引清零 从数组下标0开始加载元素
-                var oldColumn = this._waterfall_options.column;
-                this._waterfall_options.column = Math.floor(($(window).width()- this._waterfall_options.contain_left-100)/ this._waterfall_options.width);
-                if(oldColumn != this._waterfall_options.column && this._waterfall_options.column >= this._waterfall_options.resizelimit){//如果列发生变化 则重新排列
-                    $._waterfall_options.container.empty();
-                    $._create_wait_tip();
-                    var nodes = this._waterfall_options.nodes;
-                    var newNodes = [];
-                    //将图片放置到可视距离之外
-                    $(nodes).each(function(i){
-                            $(nodes[i]).css('position','absolute').css('top',-2000).css('left',-1000);
-                    });
-                    $._waterfall_options.container.append(nodes);
+            this._waterfall_options.currentlastindex = 0;//要重排所有已经存在的元素 所以 最后load的索引清零 从数组下标0开始加载元素
+            var oldColumn = this._waterfall_options.column;
+            this._waterfall_options.column = Math.floor(($(window).width()- this._waterfall_options.contain_left-100)/ this._waterfall_options.width);
+            if(oldColumn != this._waterfall_options.column && this._waterfall_options.column >= this._waterfall_options.resizelimit){//如果列发生变化 则重新排列
+                $._waterfall_options.container.empty();
+                $._create_wait_tip();
+                var nodes = this._waterfall_options.nodes;
+                var newNodes = [];
+                //将图片放置到可视距离之外
+                $(nodes).each(function(i){
+                    $(nodes[i]).css('position','absolute').css('top',-2000).css('left',-1000);
+                });
+                $._waterfall_options.container.append(nodes);
 
-                    var _heights = [];
-                    $(nodes).find('img').each(function(i){
-                        //设置所有图片的宽度
-                        $(this).css('width',$._waterfall_options.width);
-                        //获取所有图片的高度
-                        _heights.push($(this).css('height'));
-                        $(nodes[i]).css('display','none');
-                    });
+                var _heights = [];
+                $(nodes).find('img').each(function(i){
+                    //设置所有图片的宽度
+                    $(this).css('width',$._waterfall_options.width);
+                    //获取所有图片的高度
+                    _heights.push($(this).css('height'));
+                    $(nodes[i]).css('display','none');
+                });
 
-                    $(nodes).each(function(i){
-                        this.childNodes[0].style.cssText = '';
-                        $(this).find('img').css('width',$._waterfall_options.width);
-                        $(this).find('div').css('position','relative').css('height', $._waterfall_options.divheight+'px').css('overflow','hidden').css('width',$._waterfall_options.width);
-                        //设置边框样式
-                        $(this).css($._waterfall_options.borderStyle);
-                        //此时所有已经渲染的图片在_waterfall_load方法中都已经load完成 所以不会触发load事件 所以不需要判断load事件
-                        var _top = $._setTop(nodes,this,i,$._waterfall_options.contain_top,_heights);
-                        var _left = $._setLeft(nodes,this,i,$._waterfall_options.contain_left);
-                        //设置定位
-                        $(this).css({'position':'absolute','left':_left,'top':_top,'width':$(this).find('img').css('width')});
-                        $(this).fadeIn();
-                        //设置node的高度和图片等高
-                        $(this).css('height',$(this).find('img').height() + $._waterfall_options.divheight);
-                        newNodes.push(nodes[i]);//每个node的图片参数left,top都会变化 所以要记录返回新的nodes给全局参数
-                    });
-                    this._waterfall_options.nodes = newNodes;
-                    $._waterfall_event_bind('click',newNodes);
-                    this._waterfall_options.currentlastindex = nodes.length;//把总数组的长度增加
-                }
+                $(nodes).each(function(i){
+                    this.childNodes[0].style.cssText = '';
+                    $(this).find('img').css('width',$._waterfall_options.width);
+                    $(this).find('div').css('position','relative').css('height', $._waterfall_options.divheight+'px').css('overflow','hidden').css('width',$._waterfall_options.width);
+                    //设置边框样式
+                    $(this).css($._waterfall_options.borderStyle);
+                    //此时所有已经渲染的图片在_waterfall_load方法中都已经load完成 所以不会触发load事件 所以不需要判断load事件
+                    var _top = $._setTop(nodes,this,i,$._waterfall_options.contain_top,_heights);
+                    var _left = $._setLeft(nodes,this,i,$._waterfall_options.contain_left);
+                    //设置定位
+                    $(this).css({'position':'absolute','left':_left,'top':_top,'width':$(this).find('img').css('width')});
+                    $(this).fadeIn();
+                    //设置node的高度和图片等高
+                    $(this).css('height',$(this).find('img').height() + $._waterfall_options.divheight);
+                    newNodes.push(nodes[i]);//每个node的图片参数left,top都会变化 所以要记录返回新的nodes给全局参数
+                });
+                this._waterfall_options.nodes = newNodes;
+                $._waterfall_event_bind('click',newNodes);
+                this._waterfall_options.currentlastindex = nodes.length;//把总数组的长度增加
+            }
         },
 
         _waterfall_load:function(){
@@ -382,6 +383,7 @@
                 }
                 $._waterfall_event_bind('click',nodes);
                 $._waterfall_load();
+                $._lazyloadParam.start += $._lazyloadParam.limit;//下次请求的起始图片索引
             }
             $._lazyloadParam.start = $._lazyloadParam.start+$._lazyloadParam.limit;
             $._lazy_register();
@@ -401,25 +403,25 @@
         },
 
         _get_prev_top:function(index,_heights){//得到该行的top
-                var indexes = this._all_pre_index_in_row(index);
-                var space = indexes.length * this._waterfall_options.space
-                var div = indexes.length * this._waterfall_options.divheight;
-                var top = 0;
-                for(var i=0 ;i < indexes.length;i++){
-                    top += parseInt(_heights[ indexes[i]-1 ]);
-                }
-                //当元素为第一行时 是不需要加上space间隔的
-                if((index+1)>this._waterfall_options.column){
-                    top += space + div;
-                }
-                return top;
+            var indexes = this._all_pre_index_in_row(index);
+            var space = indexes.length * this._waterfall_options.space
+            var div = indexes.length * this._waterfall_options.divheight;
+            var top = 0;
+            for(var i=0 ;i < indexes.length;i++){
+                top += parseInt(_heights[ indexes[i]-1 ]);
+            }
+            //当元素为第一行时 是不需要加上space间隔的
+            if((index+1)>this._waterfall_options.column){
+                top += space + div;
+            }
+            return top;
         },
 
         /**
          *     下啦刷新
          *     $(function(){
                     $.lazyload({
-                        element:'#main',
+                        element:'#main',//需要吧等待提示添加到的父容器节点
                         url:'test.php',
                         type:'POST',
                         dataType:'html',
@@ -430,12 +432,12 @@
                         callback:null//如果不是瀑布流 请实现回调函数
                 });
                 })
-                使用瀑布流img标签外必须包裹span或者li
+         使用瀑布流img标签外必须包裹span或者li
          */
-         _lazyloadParam:{},
+        _lazyloadParam:{},
 
         lazyload:function(options){
-            var _default = {element:'',url:'',type:'POST',dataType:'html',data:'',wait_img:'images/loading.gif',limit:15,waterfall:false,callback:null};
+            var _default = {element:'',url:'',type:'POST',dataType:'html',data:'',wait_img:'images/loading.gif',start:0,limit:15,waterfall:false,callback:null};
             var _options = $.extend({},_default,options);
             this._lazyloadParam = _options;
             this._lazy_register();
@@ -444,79 +446,113 @@
 
 
         _lazy_load: function (){
-                    this._lazy_destroy();//注销滚动条事件
-                    var tip = this._create_wait_tip();//创建wait提示
-                    $(this._lazyloadParam.element).after(tip);//放入wait提示
-                    var data = this._lazyloadParam.data + '&limit='+this._lazyloadParam.limit;
+            this._lazy_destroy();//注销滚动条事件
+            var tip = this._create_wait_tip();//创建wait提示
+            $(this._lazyloadParam.element).after(tip);//放入wait提示
+            var data = this._lazyloadParam.data + '&start='+this._lazyloadParam.start+'&limit='+this._lazyloadParam.limit;
 
-                    //开始执行ajax请求
-                    $.ajax({
-                        url:$._lazyloadParam.url,
-                        type:$._lazyloadParam.type,
-                        dataType:$._lazyloadParam.dataType,
-                        data:data,
-                        success:function(data){
-                            if(typeof eval($._lazyloadParam.callback) == 'function'){
-                                eval($._lazyloadParam.callback+'()');
-                            }else{
-                                $._waterfall_callback(data);
-                            }
+            //开始执行ajax请求
+            $.ajax({
+                url:$._lazyloadParam.url,
+                type:$._lazyloadParam.type,
+                dataType:$._lazyloadParam.dataType,
+                data:data,
+                success:function(data){
+                    if(typeof eval($._lazyloadParam.callback) == 'function'){
+                        eval($._lazyloadParam.callback+'()');
+                    }else{
+                        if($._lazyloadParam.waterfall)
+                            $._waterfall_callback(data);
+                        else
+                            alert('error!');
+                    }
+                }
+            });
+        }
+
+
+        ,
+
+
+        _lazy_register: function (){//初始化 给浏览器绑定滚动事件
+            if(window.attachEvent){//IE
+                window.attachEvent("onscroll",this._lazy_scroll,false);
+            }else{//FF
+                window.addEventListener("scroll",this._lazy_scroll,false);
+            }
+        }
+
+        ,
+
+
+        _lazy_scroll: function (){//滚动条 开始滚动 并计算是否到达底部
+            //判断滚动条滚到了网页最底部
+            var a = document.documentElement.scrollTop==0? document.body.clientHeight : document.documentElement.clientHeight;
+            var b = document.documentElement.scrollTop==0? document.body.scrollTop : document.documentElement.scrollTop;
+            var c = document.documentElement.scrollTop==0? document.body.scrollHeight : document.documentElement.scrollHeight;
+
+
+            if(a+b == c && a!=0 && b!=0 && c!=0){
+                $._lazy_load();//开始加载
+            }
+        }
+
+        ,
+
+
+        _lazy_destroy:function (){//注销onscroll事件 防止加载数据的时候继续加载
+            if(window.attachEvent){//ff
+                window.detachEvent("onscroll",this._lazy_scroll,false);
+            }else{//ie
+                window.removeEventListener("scroll",this._lazy_scroll,false);
+            }
+        }
+
+        ,
+
+        _create_wait_tip:function (){
+            var top = $(window).height() - 35;//浏览器窗口的高度(可视区域)
+            return '<div id="wait_tip" style="border:1px #f5f5f5 solid;background-color:white;width:300px;left:50%;margin-left:-150px;line-height:35px;height:35px;position:fixed;z-index:10;text-align:center;vertical-align:middle;top:'+top+'px;font-size:12px"><b style="vertical-align: middle">正在加载...</b><img style="vertical-align: middle" src="'+this._lazyloadParam.wait_img+'" /></div>';
+        }
+
+
+        ,
+
+        //将字符串html代码转换为jquery对象
+        _stringToObject:function(string){
+            var div = $("<div>").append(string);
+            return $(div).children();
+        }
+        ,
+
+        //comet
+        comet:function(options){
+            var _default = {url:"",type:"POST",dataType:"html",data:"",timeout:"60000",success:null};
+            var _options = $.extend({},_default,options);
+            _options.timeout = _options.timeout * 1000;//吧秒换算成毫秒
+
+            if(_options.url == '')return;
+
+            sendComet();
+
+            function sendComet(){
+                $.ajax({
+                    url: _options.url,
+                    type: _options.type,
+                    dataType:_options.dataType,
+                    data:_options.data+'&timeout='+_options.timeout,
+                    timeout:_options.timeout,
+                    success:function(data,status,xhr){
+                        if(data != ''){
+                            _options.success(data);
                         }
-                    });
-         }
-
-
-            ,
-
-
-            _lazy_register: function (){//初始化 给浏览器绑定滚动事件
-                if(window.attachEvent){//IE
-                    window.attachEvent("onscroll",this._lazy_scroll,false);
-                }else{//FF
-                    window.addEventListener("scroll",this._lazy_scroll,false);
-                }
+                    },
+                    complete:function(xhr,status){
+                        sendComet();
+                    }
+                });
             }
-
-            ,
-
-
-           _lazy_scroll: function (){//滚动条 开始滚动 并计算是否到达底部
-                //判断滚动条滚到了网页最底部
-                var a = document.documentElement.scrollTop==0? document.body.clientHeight : document.documentElement.clientHeight;
-                var b = document.documentElement.scrollTop==0? document.body.scrollTop : document.documentElement.scrollTop;
-                var c = document.documentElement.scrollTop==0? document.body.scrollHeight : document.documentElement.scrollHeight;
-
-                if(a+b == c){
-                    $._lazy_load();//开始加载
-                }
-            }
-
-            ,
-
-
-            _lazy_destroy:function (){//注销onscroll事件 防止加载数据的时候继续加载
-                if(window.attachEvent){//ff
-                    window.detachEvent("onscroll",this._lazy_scroll,false);
-                }else{//ie
-                    window.removeEventListener("scroll",this._lazy_scroll,false);
-                }
-            }
-
-            ,
-
-            _create_wait_tip:function (){
-                var top = $(window).height() - 35;//浏览器窗口的高度(可视区域)
-                return '<div id="wait_tip" style="border:1px #f5f5f5 solid;background-color:white;width:300px;left:50%;margin-left:-150px;line-height:35px;height:35px;position:fixed;z-index:10;text-align:center;vertical-align:middle;top:'+top+'px;font-size:12px"><b style="vertical-align: middle">正在加载...</b><img style="vertical-align: middle" src="'+this._lazyloadParam.wait_img+'" /></div>';
-            }
-
-
-           ,
-
-            //将字符串html代码转换为jquery对象
-           _stringToObject:function(string){
-               var div = $("<div>").append(string);
-               return $(div).children();
-           }
+        }
 
     });
 
